@@ -1,24 +1,13 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ninja network | Home</title>
-</head>
-<body>
-    <h1>Current available ninjas</h1>
-    <p>{{ $greeting }}</p>
+<x-layout>
+    <h2>Current available ninjas</h2>
 
     <ul>
-        <li>
-            <a href="/ninjas/{{$ninjas[0]["id"]}}">
-                {{ $ninjas[0]["name"] }}
-            </a>
-        </li>
-        <li>
-            <a href="/ninjas/{{$ninjas[1]["id"]}}">
-                {{ $ninjas[1]["name"] }}
-            </a>
-        </li>
+        @foreach($ninjas as $ninja)
+            <li>
+                <x-card href="/ninjas/{{ $ninja['id'] }}" :highlight="$ninja['skill'] > 70">
+                    <h3>{{ $ninja['name'] }}</h3>
+                </x-card>
+            </li>
+        @endforeach
     </ul>
-</body>
-</html>
+</x-layout>
